@@ -9,11 +9,11 @@ spec:
   topology:                               
     controlPlane:
       count: 1
-      class: best-effort-medium
+      vmClass: best-effort-medium
       storageClass: tanzu-k8s-tagged-policy
     workers:                              
       count: 1
-      class: best-effort-small
+      vmClass: best-effort-small
       storageClass: tanzu-k8s-tagged-policy         
   settings: #all spec.settings are optional
     storage: #optional storage settings
