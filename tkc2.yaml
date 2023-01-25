@@ -1,0 +1,29 @@
+apiVersion: run.tanzu.vmware.com/v1alpha2
+kind: TanzuKubernetesCluster
+metadata:
+  name: pfr-testcluster
+  namespace: pfritsch
+spec:
+  distribution:
+    version: v1.22.9---vmware.1-tkg.1.cc71bc8
+  topology:                               
+    controlPlane:
+      count: 1
+      class: best-effort-medium
+      storageClass: tanzu-k8s-tagged-policy
+    workers:                              
+      count: 1
+      class: best-effort-small
+      storageClass: tanzu-k8s-tagged-policy         
+  settings: #all spec.settings are optional
+    storage: #optional storage settings
+      #classes: [<array of kubernetes storage classes for dynamic pvc provisioning>]
+      defaultClass: tanzu-k8s-tagged-policy
+    network: #optional network settings
+      cni: #override default cni set in the tkgservicesonfiguration spec
+        name: antrea
+      pods: #custom pod network
+        cidrBlocks: ["192.0.2.0/16"]
+      services: #custom service network
+        cidrBlocks: ["198.51.100.0/12"]
+      serviceDomain: cluster.local
