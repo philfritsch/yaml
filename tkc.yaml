@@ -2,13 +2,13 @@ apiVersion: run.tanzu.vmware.com/v1alpha2
 kind: TanzuKubernetesCluster
 metadata:
   name: testcluster
-  namespace: testnamespace
+  namespace: pfritsch
 spec:
   topology:
     controlPlane:
       replicas: 1
       vmClass: best-effort-medium
-      storageClass: tanzu-k8s-tagged-policy
+      storageClass: tanzu
       tkr:  
         reference:
           name: v1.22.9---vmware.1-tkg.1.cc71bc8
@@ -16,10 +16,10 @@ spec:
     - name: worker
       replicas: 2
       vmClass: best-effort-small
-      storageClass: tanzu-k8s-tagged-policy
+      storageClass: tanzu
       tkr:  
         reference:
           name: v1.22.9---vmware.1-tkg.1.cc71bc8
   settings:
     storage:
-      defaultClass: tanzu-k8s-tagged-policy
+      defaultClass: tanzu
